@@ -20,8 +20,6 @@ import jakarta.persistence.Id;
 public class DrinkJpaCompatible {
     private int idDrink;
     private String strDrink;
-    private String strInstructions;
-    private String strDrinkThumb;
     private String date;
     @Id
     @GeneratedValue
@@ -31,7 +29,10 @@ public class DrinkJpaCompatible {
         super();
     }
 
-    public DrinkJpaCompatible(int idDrink, String strDrink, String strInstructions, String strDrinkThumb, String date) {
+    public DrinkJpaCompatible(int idDrink, String strDrink, String date) {
+        super();
+        this.idDrink = idDrink;
+        this.strDrink = strDrink;
         this.date = date;
     }
 
@@ -45,14 +46,6 @@ public class DrinkJpaCompatible {
 
     public String getDate() {
         return date;
-    }
-
-    public String getStrInstructions() {
-        return strInstructions;
-    }
-
-    public String getStrDrinkThumb() {
-        return strDrinkThumb;
     }
 
     public Long getId() {

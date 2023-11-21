@@ -32,7 +32,7 @@ import static dev.mprevorovsky.cocktail_proxy_java.CocktailProxyJavaApplication.
 */
 @RestController
 @RequestMapping("/proxy")
-class CocktailDbProxyController{
+class ProxyController {
 
     @Autowired
     HttpServletRequest httpRequest;

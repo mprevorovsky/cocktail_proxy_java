@@ -1,8 +1,11 @@
 package dev.mprevorovsky.cocktail_proxy_java.service;
 
 
+import dev.mprevorovsky.cocktail_proxy_java.datasource.DrinksRepository;
 import dev.mprevorovsky.cocktail_proxy_java.model.Drink;
+import dev.mprevorovsky.cocktail_proxy_java.model.DrinkJpaCompatible;
 import dev.mprevorovsky.cocktail_proxy_java.model.NameDay;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
@@ -23,12 +26,15 @@ import static dev.mprevorovsky.cocktail_proxy_java.utils.RandomDrinkFromCocktail
  */
 @Service
 public class RandomDrinkService {
-    private final RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
 
     public RandomDrinkService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-    // private DrinksRepository drinksLocalRepository;
+
+    @Autowired
+    private DrinksRepository drinksLocalRepository;
 
 
     public void getRandomDrinkAndCelebratedName(Model model) {
@@ -44,7 +50,7 @@ public class RandomDrinkService {
         model.addAttribute("strDrinkThumb", randomDrink.getStrDrinkThumb());
         model.addAttribute("nameDayPhrase", nameCelebratedToday + " celebrates today... Cheers!");
 
-        //saveDrinkDataIfNotExists(randomDrink.toDrinkJpaCompatible())
+        saveDrinkDataIfNotExists(randomDrink.toDrinkJpaCompatible());
     }
 
     /**
@@ -61,8 +67,9 @@ public class RandomDrinkService {
     /**
      * Saves new drink data to the local in-memory DB.
      */
-    /*internal fun saveDrinkDataIfNotExists(drink:DrinkJpaCompatible) {
-        if (!drinksLocalRepository.existsByIdDrink(drink.idDrink))
-            drinksLocalRepository.save(drink)
-    }*/
+
+    private void saveDrinkDataIfNotExists(DrinkJpaCompatible drink) {
+        if (!drinksLocalRepository.existsByIdDrink(drink.getIdDrink()))
+            drinksLocalRepository.save(drink);
+    }
 }

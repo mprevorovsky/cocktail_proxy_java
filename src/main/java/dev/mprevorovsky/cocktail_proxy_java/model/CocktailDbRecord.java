@@ -1,5 +1,7 @@
 package dev.mprevorovsky.cocktail_proxy_java.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Collection;
 
 
@@ -11,7 +13,10 @@ import java.util.Collection;
  * functionality, all retrieved JSON data are mapped to a common data structure.
  */
 public class CocktailDbRecord {
+
+    @JsonProperty("drinks")
     private Collection<Drink> drinks;
+    @JsonProperty("ingredients")
     private Collection<Ingredient> ingredients;
 
     public Collection<Drink> getDrinks() {

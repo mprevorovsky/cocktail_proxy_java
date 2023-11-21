@@ -1,10 +1,14 @@
 package dev.mprevorovsky.cocktail_proxy_java.service;
 
 
+import dev.mprevorovsky.cocktail_proxy_java.datasource.DrinksRepository;
 import dev.mprevorovsky.cocktail_proxy_java.datasource.ProxyDataSource;
 import dev.mprevorovsky.cocktail_proxy_java.model.CocktailDbRecord;
+import dev.mprevorovsky.cocktail_proxy_java.model.Drink;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 
 /**
@@ -25,7 +29,8 @@ import org.springframework.stereotype.Service;
 public class ProxyService {
     @Autowired
     ProxyDataSource dataSource;
-    //DrinksRepository drinksLocalRepository;
+    @Autowired
+    DrinksRepository drinksLocalRepository;
 
     public CocktailDbRecord performProxyGetRequest(
         String consumedApiBaseUrl,
@@ -36,32 +41,48 @@ public class ProxyService {
         CocktailDbRecord response = dataSource.performProxyGetRequest(consumedApiBaseUrl, consumedApiPath, queryString);
 
         // If any drink data is returned, each *new* drink is saved to an in-memory database.
-        //if (!response.drinks.isNullOrEmpty()) {
-        //    saveDrinkDataIfNotExists(response.drinks)
-        //}
+        if (response.getDrinks() != null) {
+            saveDrinkDataIfNotExists(response.getDrinks());
+        }
 
-        //return makeNamesUppercase(response);
-        return response;
+        return makeNamesUppercase(response);
     }
 
 
     /**
      * Turns drink and ingredient names to uppercase to demonstrate data processing.
      */
-    //internal fun makeNamesUppercase(responseToProcess:CocktailDbRecord): CocktailDbRecord {
-    //    responseToProcess.drinks?.forEach { it.strDrink = it.strDrink.uppercase() }
-     //   responseToProcess.ingredients?.forEach { it.strIngredient = it.strIngredient.uppercase() }
-//
-  //      return responseToProcess
-    //}
+    private CocktailDbRecord makeNamesUppercase(CocktailDbRecord responseToProcess) {
+        if (responseToProcess.getDrinks() != null) {
+            responseToProcess.getDrinks().forEach(it -> {
+                if (it.getStrDrink() != null) {
+                    it.setStrDrink(it.getStrDrink().toUpperCase());
+                }
+            }
+            );
+        }
+        if (responseToProcess.getIngredients() != null) {
+            responseToProcess.getIngredients().forEach(it -> {
+                        if (it.getStrIngredient() != null) {
+                            it.setStrIngredient(it.getStrIngredient().toUpperCase());
+                        }
+                    }
+            );
+        }
+
+        return responseToProcess;
+    }
 
 
     /**
      * Saves new drink data to the local in-memory DB.
      */
-    //internal fun saveDrinkDataIfNotExists(drinkData:Collection<Drink>) {
-     //   drinkData.forEach {
-      //      if (!drinksLocalRepository.existsByIdDrink(it.idDrink))
-       //         drinksLocalRepository.save(it.toDrinkJpaCompatible())
-        //}
+    private void saveDrinkDataIfNotExists(Collection<Drink> drinkData) {
+        drinkData.forEach(it -> {
+                    if (!drinksLocalRepository.existsByIdDrink(it.getIdDrink())) {
+                        drinksLocalRepository.save(it.toDrinkJpaCompatible());
+                    }
+                }
+        );
+    }
 }
