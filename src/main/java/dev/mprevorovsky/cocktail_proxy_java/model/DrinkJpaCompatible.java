@@ -4,8 +4,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
-import java.util.Objects;
-
 /**
  * Data Transfer Object class used for interaction with the Jakarta Persistence API.
  * <p>
@@ -22,18 +20,18 @@ import java.util.Objects;
 public class DrinkJpaCompatible {
     private int idDrink;
     private String strDrink;
-    private String date; //String?=null
+    private String strInstructions;
+    private String strDrinkThumb;
+    private String date;
     @Id
     @GeneratedValue
-    private Long id;  //Long?=null
+    private Long id;
 
-    public DrinkJpaCompatible(int idDrink, String strDrink) {
-        this(idDrink, strDrink, null);
+    public DrinkJpaCompatible() {
+        super();
     }
 
-    public DrinkJpaCompatible(int idDrink, String strDrink, String date) {
-        this.idDrink = idDrink;
-        this.strDrink = Objects.requireNonNull(strDrink);
+    public DrinkJpaCompatible(int idDrink, String strDrink, String strInstructions, String strDrinkThumb, String date) {
         this.date = date;
     }
 
@@ -47,5 +45,17 @@ public class DrinkJpaCompatible {
 
     public String getDate() {
         return date;
+    }
+
+    public String getStrInstructions() {
+        return strInstructions;
+    }
+
+    public String getStrDrinkThumb() {
+        return strDrinkThumb;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

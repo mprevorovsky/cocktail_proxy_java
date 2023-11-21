@@ -1,7 +1,7 @@
 package dev.mprevorovsky.cocktail_proxy_java.model;
 
 /**
- * Extensive data transfer object class for parsing drink-related JSON data
+ * Data transfer object class for parsing drink-related JSON data
  * obtained from the CocktailDB API.
  */
 public class Drink {
@@ -15,7 +15,7 @@ public class Drink {
      * Converts the Drink object into a DrinkJpaCompatible object.
      */
     public DrinkJpaCompatible toDrinkJpaCompatible() {
-        return new DrinkJpaCompatible(this.idDrink, this.strDrink);
+        return new DrinkJpaCompatible(this.idDrink, this.strDrink, this.strInstructions, this.strDrinkThumb, null);
     }
 
     public String getStrDrinkThumb() {

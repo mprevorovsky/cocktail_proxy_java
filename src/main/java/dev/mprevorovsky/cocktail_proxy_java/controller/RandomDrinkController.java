@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/random-drink")
 public class RandomDrinkController {
-    private RandomDrinkService randomDrinkService;
+    RandomDrinkService randomDrinkService;
 
     public RandomDrinkController(RandomDrinkService randomDrinkService) {
         this.randomDrinkService = randomDrinkService;

@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 public class CocktailDbProxyApplicationConfiguration {
 
     @Bean
-    public static RestTemplate restTemplate() {
-        return new RestTemplateBuilder().build();
+    RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
