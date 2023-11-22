@@ -49,6 +49,11 @@
             <artifactId>spring-context</artifactId>
             <version>6.0.13</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>13.0</version>
+        </dependency>
     </dependencies>
 
 	<build>

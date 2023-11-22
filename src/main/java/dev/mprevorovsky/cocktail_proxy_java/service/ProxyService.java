@@ -6,6 +6,7 @@ import dev.mprevorovsky.cocktail_proxy_java.datasource.ProxyDataSource;
 import dev.mprevorovsky.cocktail_proxy_java.model.CocktailDbRecord;
 import dev.mprevorovsky.cocktail_proxy_java.model.Drink;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -33,9 +34,9 @@ public class ProxyService {
     DrinksRepository drinksLocalRepository;
 
     public CocktailDbRecord performProxyGetRequest(
-        String consumedApiBaseUrl,
-        String consumedApiPath,
-        String queryString
+            String consumedApiBaseUrl,
+            String consumedApiPath,
+            String queryString
     ) {
 
         CocktailDbRecord response = dataSource.performProxyGetRequest(consumedApiBaseUrl, consumedApiPath, queryString);
@@ -58,16 +59,14 @@ public class ProxyService {
                 if (it.getStrDrink() != null) {
                     it.setStrDrink(it.getStrDrink().toUpperCase());
                 }
-            }
-            );
+            });
         }
         if (responseToProcess.getIngredients() != null) {
             responseToProcess.getIngredients().forEach(it -> {
-                        if (it.getStrIngredient() != null) {
-                            it.setStrIngredient(it.getStrIngredient().toUpperCase());
-                        }
-                    }
-            );
+                if (it.getStrIngredient() != null) {
+                    it.setStrIngredient(it.getStrIngredient().toUpperCase());
+                }
+            });
         }
 
         return responseToProcess;
@@ -79,10 +78,9 @@ public class ProxyService {
      */
     private void saveDrinkDataIfNotExists(Collection<Drink> drinkData) {
         drinkData.forEach(it -> {
-                    if (!drinksLocalRepository.existsByIdDrink(it.getIdDrink())) {
-                        drinksLocalRepository.save(it.toDrinkJpaCompatible());
-                    }
-                }
-        );
+            if (!drinksLocalRepository.existsByIdDrink(it.getIdDrink())) {
+                drinksLocalRepository.save(it.toDrinkJpaCompatible());
+            }
+        });
     }
 }
