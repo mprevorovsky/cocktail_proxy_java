@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Objects;
-
 import static dev.mprevorovsky.cocktail_proxy_java.CocktailProxyJavaApplication.nameDaysApiTodayUrl;
 import static dev.mprevorovsky.cocktail_proxy_java.utils.RandomDrinkFromCocktailDb.getRandomDrinkFromCocktailDb;
 
@@ -28,10 +26,6 @@ import static dev.mprevorovsky.cocktail_proxy_java.utils.RandomDrinkFromCocktail
 public class RandomDrinkService {
     @Autowired
     private RestTemplate restTemplate;
-
-    public RandomDrinkService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
     @Autowired
     private DrinksRepository drinksLocalRepository;
@@ -57,10 +51,9 @@ public class RandomDrinkService {
      * Retrieves the currently celebrated name from Svátky API.
      */
     private String getNameCelebratedToday() {
-        return Objects.requireNonNull(restTemplate.getForEntity(nameDaysApiTodayUrl, NameDay.class)
-                        .getBody())
+        return restTemplate.getForEntity(nameDaysApiTodayUrl, NameDay.class)
+                .getBody()
                 .getName();
-        //?: throw IOException("Could not retrieve a random drink from $nameDaysApiTodayUrl")
     }
 
 

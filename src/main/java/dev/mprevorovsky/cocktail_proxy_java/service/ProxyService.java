@@ -7,7 +7,9 @@ import dev.mprevorovsky.cocktail_proxy_java.model.CocktailDbRecord;
 import dev.mprevorovsky.cocktail_proxy_java.model.Drink;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Collection;
 
@@ -40,6 +42,11 @@ public class ProxyService {
     ) {
 
         CocktailDbRecord response = dataSource.performProxyGetRequest(consumedApiBaseUrl, consumedApiPath, queryString);
+
+        if (response == null) {
+            throw new HttpClientErrorException(HttpStatus.BAD_REQUEST,
+                    "bad request: " + consumedApiBaseUrl + consumedApiPath + queryString);
+        }
 
         // If any drink data is returned, each *new* drink is saved to an in-memory database.
         if (response.getDrinks() != null) {

@@ -36,7 +36,6 @@ public class ProxyDataSource {
         String requestUri = buildRequestUri(consumedApiBaseUrl, consumedApiPath, queryString);
 
         return restTemplate.getForObject(requestUri, CocktailDbRecord.class);
-        //  ?: throw IOException("400 Bad Request: No data could be read from $requestUri")
     }
 
 
