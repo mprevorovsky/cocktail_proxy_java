@@ -1,4 +1,4 @@
-## *NOTE: This is a learning/demo project*
+## *NOTE: This is a learning/demo JAVA project*
 
 ## The CocktailDb proxy application is linked to two REST APIs:
 
