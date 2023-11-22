@@ -36,6 +36,7 @@ public class ProxyDataSource {
         String requestUri = buildRequestUri(consumedApiBaseUrl, consumedApiPath, queryString);
 
         return restTemplate.getForObject(requestUri, CocktailDbRecord.class);
+
     }
 
 
@@ -53,5 +54,7 @@ public class ProxyDataSource {
                 .query(queryString)
                 .build()
                 .toString();
+
     }
+
 }
