@@ -1,24 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>cocktail-proxy-java</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>cocktail-proxy-java</title>
+</head>
 
-    <body>
-        <h2>cocktail-proxy-java</h2>
-        <h4>Available GET endpoints:</h4>
+<body>
+<h2> NOTE: This is a learning/demo JAVA project </h2>
+
+The application is deployed at <a href="https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/">https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/</a>
+
+<h3> The CocktailDB proxy application is linked to two REST APIs:</h3>
+
+<ol>
+    <li><p> the CocktailDB API (documentation at <a href="https://www.thecocktaildb.com/api.php">https://www.thecocktaildb.com/api.php</a>)
+        - a database of drinks</p></li>
+
+    <li><p> Svátky API (documentation at <a href="https://svatkyapi.cz/">https://svatkyapi.cz/</a>) - a nameday
+        database.</p></li>
+</ol>
+
+<h3> The application provides 4 endpoints:</h3>
+<ol>
+    <li><p>
+        <b>"/proxy"</b> - redirects <i>all</i> calls (all paths and queries) to the remote CocktailDB API and returns
+        the
+        results as JSON data.
+    </p>
         <p>
-            <a href="./random-drink">/random-drink</a> - fetches a random drink and the name celebrated today
+            The free public part of the CocktailDB API only provides GET endpoints, which all retrieve information on
+            drinks and/or ingredients in some form.
+            For simplicity, all JSON content returned from the remote server is mapped onto one common data structure
+            (CocktailDbRecord class), and returned by the application.
         </p>
         <p>
-            <a href="./proxy/filter.php?i=vodka">/proxy/filter.php?i=vodka</a> - acts as a proxy for the <a href="https://www.thecocktaildb.com/api.php">TheCocktailDB API</a>
+            Names of drinks and/or ingredients are turned to UPPERCASE as a demonstration of data processing.
         </p>
         <p>
-            <a href="./local-db">/local-db</a> - displays all drinks fetched from TheCocktailDB so far
+            When <i>new</i> drink data are retrieved, drink id (idDrink), name (strDrink), recipe (strInstructions) and
+            thumbnail link (strDrinkThumb) are saved to a local in-memory database and can be retrieved from the
+            "/local-db" endpoint.
         </p>
         <p>
-            <a href="./drink-of-the-day/2023/12/24">/drink-of-the-day/2023/12/24</a> - displays the drink associated with the specified date (/yyyy/mm/dd)
+            All requests, except for the "random.php" path, are cached.
         </p>
-    </body>
-</html>
+        <p>
+            EXAMPLE USE: <a
+                href="./proxy/filter.php?g=Champagne_flute">/proxy/filter.php?g=Champagne_flute</a>
+        </p>
+        <p>
+            <i>NOTE: This single-endpoint solution simplified the implementation of the proxy a lot, but it could become
+                limiting if future extensions of the application are required.</i>
+        </p>
+    </li>
+    <li><p><b>"<a href="./random-drink">/random-drink</a>"</b> -
+        calls the "random.php" path on the CocktailDB API to retrieve data for a random drink, and then retrieves the
+        currently celebrated name from Svátky API.
+    </p>
+        <p>
+            The results are presented as a simple webpage (Thymeleaf template).
+        </p>
+        <p>
+            Any new drink data are saved to the local in-memory DB.
+        </p>
+    </li>
+
+    <li><p><b>"<a href="./local-db">/local-db</a>"</b> - retrieves
+        all drink records stored in the local in-memory H2 database.
+    </p></li>
+    <li><p>
+        <b>"/drink-of-the-day"</b> - retrieves the drink associated with a supplied date from the local in-memory DB as
+        JSON.
+    </p>
+        <p>If no such record exists, a random drink is fetched from <a href="https://www.thecocktaildb.com/api/json/v1/1/random.php">https://www.thecocktaildb.com/api/json/v1/1/random.php</a>,
+            associated with the date, saved to the local in-memory DB and returned as JSON.
+        </p>
+        <p>
+            EXAMPLE USE: <a href="./drink-of-the-day/2023/09/13">/drink-of-the-day/2023/09/13</a>"
+        </p></li>
+</ol>

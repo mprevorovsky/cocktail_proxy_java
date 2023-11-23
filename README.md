@@ -10,7 +10,7 @@ The application is deployed at https://stark-atoll-68507-d6bb2d828e80.herokuapp.
 
 
 ## The application provides 4 endpoints:
-1) **"/proxy"** - redirects *all* calls (all paths and queries) to the remote CocktailDB API and return the results
+1) **"/proxy"** - redirects *all* calls (all paths and queries) to the remote CocktailDB API and returns the results
    as JSON data.
 
    The free public part of the CocktailDB API only provides GET endpoints, which all retrieve information
@@ -20,7 +20,7 @@ The application is deployed at https://stark-atoll-68507-d6bb2d828e80.herokuapp.
 
    Names of drinks and/or ingredients are turned to UPPERCASE as a demonstration of data processing.
 
-   When *new* drink data are retrieved, drink id (idDrink) and name (strDrink) are saved to a local in-memory
+   When *new* drink data are retrieved, drink id (idDrink), name (strDrink), recipe (strInstructions) and thumbnail link (strDrinkThumb) are saved to a local in-memory
    database and can be retrieved from the "/local-db" endpoint.
 
    All requests, except for the "random.php" path, are cached.
