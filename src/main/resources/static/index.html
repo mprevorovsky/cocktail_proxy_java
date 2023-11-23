@@ -16,7 +16,7 @@
 <h3> The CocktailDB proxy application is linked to two REST APIs:</h3>
 
 <ol>
-    <li><p> the CocktailDB API (documentation at <a href="https://www.thecocktaildb.com/api.php">https://www.thecocktaildb.com/api.php</a>)
+        <li><p> the CocktailDB API (documentation at <a href="https://www.thecocktaildb.com/api.php">https://www.thecocktaildb.com/api.php</a>)
         - a database of drinks</p></li>
 
     <li><p> Svátky API (documentation at <a href="https://svatkyapi.cz/">https://svatkyapi.cz/</a>) - a nameday
@@ -49,8 +49,15 @@
             All requests, except for the "random.php" path, are cached.
         </p>
         <p>
-            EXAMPLE USE: <a
-                href="./proxy/filter.php?g=Champagne_flute">/proxy/filter.php?g=Champagne_flute</a>
+            EXAMPLE USE:</p>
+            <p><a
+                href="./proxy/filter.php?i=vodka">/proxy/filter.php?i=vodka</a>
+        </p>
+        <p><a
+                href="./proxy/search.php?s=margarita">/proxy/search.php?s=margarita</a>
+        </p>
+        <p><a
+                href="./proxy/lookup.php?i=11007">/proxy/lookup.php?i=11007</a>
         </p>
         <br>
     </li>
@@ -80,6 +87,7 @@
             associated with the date, saved to the local in-memory DB and returned as JSON.
         </p>
         <p>
-            EXAMPLE USE: <a href="./drink-of-the-day/2023/09/13">/drink-of-the-day/2023/09/13</a>
+            EXAMPLE USE:</p>
+        <p><a href="./drink-of-the-day/2023/09/13">/drink-of-the-day/2023/09/13</a>
         </p></li>
 </ol>
