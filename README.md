@@ -1,4 +1,4 @@
-## *NOTE: This is a demo JAVA project*
+## *NOTE: This is a demo JAVA/SpringBoot project*
 
 The application is deployed at https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/
 
