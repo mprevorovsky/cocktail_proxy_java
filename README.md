@@ -41,7 +41,7 @@ The application is deployed at https://stark-atoll-68507-d6bb2d828e80.herokuapp.
 
 4) **"/drink-of-the-day"** - retrieves the drink associated with a supplied date from the local in-memory DB as JSON.
 
-   If no such record exists, a random drink is fetched from www.thecocktaildb.com/api/json/v1/1/random.php,
+   If no such record exists, a random drink is fetched from https://www.thecocktaildb.com/api/json/v1/1/random.php,
    associated with the date, saved to the local in-memory DB and returned as JSON.
 
    EXAMPLE USE: <a href="https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/drink-of-the-day/2023/09/13">/drink-of-the-day/2023/09/13</a>"
