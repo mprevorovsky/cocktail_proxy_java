@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<h2>cocktail-proxy-java: A demo JAVA/Spring Boot web application</h2>
+<h2>cocktail-proxy-java: a demo JAVA/Spring Boot web application</h2>
 
 <p>The application is deployed at <a href="https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/">https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/</a></p>
 <p>The source code is available at <a href="https://github.com/mprevorovsky/cocktail_proxy_java">https://github.com/mprevorovsky/cocktail_proxy_java</a></p>
@@ -24,7 +24,8 @@
 <h3> The application provides 4 REST API endpoints:</h3>
 <ol>
     <li><p>
-        <b>"/proxy"</b> - redirects <i>all</i> calls (all paths and queries) to the remote CocktailDB API and returns
+        <b>"/proxy"</b> </p>
+            <p>Redirects <i>all</i> calls (all paths and queries) to the remote CocktailDB API and returns
         the
         results as JSON data.
     </p>
@@ -49,13 +50,10 @@
             EXAMPLE USE: <a
                 href="./proxy/filter.php?g=Champagne_flute">/proxy/filter.php?g=Champagne_flute</a>
         </p>
-        <p>
-            <i>NOTE: This single-endpoint solution simplified the implementation of the proxy a lot, but it could become
-                limiting if future extensions of the application are required.</i>
-        </p>
+
     </li>
-    <li><p><b>"<a href="./random-drink">/random-drink</a>"</b> -
-        calls the "random.php" path on the CocktailDB API to retrieve data for a random drink, and then retrieves the
+    <li><p><b>"<a href="./random-drink">/random-drink</a>"</b></p>
+        <p>Calls the "random.php" path on the CocktailDB API to retrieve data for a random drink, and then retrieves the
         currently celebrated name from Svátky API.
     </p>
         <p>
@@ -66,11 +64,12 @@
         </p>
     </li>
 
-    <li><p><b>"<a href="./local-db">/local-db</a>"</b> - retrieves
-        all drink records stored in the local in-memory H2 database.
+    <li><p><b>"<a href="./local-db">/local-db</a>"</b></p>
+        <p>Retrieves all drink records stored in the local in-memory H2 database.
     </p></li>
     <li><p>
-        <b>"/drink-of-the-day"</b> - retrieves the drink associated with a supplied date from the local in-memory DB as
+        <b>"/drink-of-the-day"</b></p>
+        <p>|Retrieves the drink associated with a supplied date from the local in-memory DB as
         JSON.
     </p>
         <p>If no such record exists, a random drink is fetched from <a href="https://www.thecocktaildb.com/api/json/v1/1/random.php">https://www.thecocktaildb.com/api/json/v1/1/random.php</a>,
