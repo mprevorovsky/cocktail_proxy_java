@@ -8,8 +8,10 @@
 <body>
 <h2>cocktail-proxy-java: a demo JAVA/Spring Boot web application</h2>
 
-<p>The application is deployed at <a href="https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/">https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/</a></p>
-<p>The source code is available at <a href="https://github.com/mprevorovsky/cocktail_proxy_java">https://github.com/mprevorovsky/cocktail_proxy_java</a></p>
+<p>The application is deployed at <a href="https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/">https://stark-atoll-68507-d6bb2d828e80.herokuapp.com/</a>
+</p>
+<p>The source code is available at <a href="https://github.com/mprevorovsky/cocktail_proxy_java">https://github.com/mprevorovsky/cocktail_proxy_java</a>
+</p>
 
 <h3> The CocktailDB proxy application is linked to two REST APIs:</h3>
 
@@ -24,11 +26,11 @@
 <h3> The application provides 4 REST API endpoints:</h3>
 <ol>
     <li><p>
-        <b>"/proxy"</b> </p>
-            <p>Redirects <i>all</i> calls (all paths and queries) to the remote CocktailDB API and returns
-        the
-        results as JSON data.
-    </p>
+        <b>"/proxy"</b></p>
+        <p>Redirects <i>all</i> calls (all paths and queries) to the remote CocktailDB API and returns
+            the
+            results as JSON data.
+        </p>
         <p>
             The free public part of the CocktailDB API only provides GET endpoints, which all retrieve information on
             drinks and/or ingredients in some form.
@@ -50,12 +52,12 @@
             EXAMPLE USE: <a
                 href="./proxy/filter.php?g=Champagne_flute">/proxy/filter.php?g=Champagne_flute</a>
         </p>
-
+        <br>
     </li>
     <li><p><b>"<a href="./random-drink">/random-drink</a>"</b></p>
         <p>Calls the "random.php" path on the CocktailDB API to retrieve data for a random drink, and then retrieves the
-        currently celebrated name from Svátky API.
-    </p>
+            currently celebrated name from Svátky API.
+        </p>
         <p>
             The results are presented as a simple webpage (Thymeleaf template).
         </p>
@@ -63,16 +65,18 @@
             Any new drink data are saved to the local in-memory DB.
         </p>
     </li>
-
+    <br>
     <li><p><b>"<a href="./local-db">/local-db</a>"</b></p>
         <p>Retrieves all drink records stored in the local in-memory H2 database.
-    </p></li>
+        </p></li>
+    <br>
     <li><p>
         <b>"/drink-of-the-day"</b></p>
-        <p>|Retrieves the drink associated with a supplied date from the local in-memory DB as
-        JSON.
-    </p>
-        <p>If no such record exists, a random drink is fetched from <a href="https://www.thecocktaildb.com/api/json/v1/1/random.php">https://www.thecocktaildb.com/api/json/v1/1/random.php</a>,
+        <p>Retrieves the drink associated with a supplied date from the local in-memory DB as
+            JSON.
+        </p>
+        <p>If no such record exists, a random drink is fetched from <a
+                href="https://www.thecocktaildb.com/api/json/v1/1/random.php">https://www.thecocktaildb.com/api/json/v1/1/random.php</a>,
             associated with the date, saved to the local in-memory DB and returned as JSON.
         </p>
         <p>
